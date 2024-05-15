@@ -10,7 +10,7 @@ if ($mysqli->connect_error) {
 $userId = '';
 $userToken = '';
 
-// Obtener el ID de usuario y el token de la URL si están presentes
+
 if (isset($_GET['id']) && isset($_GET['token'])) {
     $userId = $_GET['id'];
     $userToken = $_GET['token'];
@@ -24,7 +24,7 @@ if (isset($_GET['id']) && isset($_GET['token'])) {
         $stmt->bind_result($dbToken, $username);
         $stmt->fetch();
 
-        // Verificar si el token coincide con el token de la base de datos
+
         if ($dbToken !== $userToken) {
             header("Location: login.php");
             exit();
@@ -49,14 +49,14 @@ if (isset($_GET['id']) && isset($_GET['token'])) {
         <h1>Debate Forum</h1>
     </header>
     <div class="pregunta">
-        <h2><b>Let us know you opinion about the 2023 climate summit</b></h2>
-        <a href="https://www.consilium.europa.eu/en/meetings/international-summit/2023/12/01-02/">Reference</a>
+        <h2><b>Let us know you opinion about the 2024 climate summit</b></h2>
+        <a href="https://www.theclimategroup.org/us-climate-action-summit-2024">Reference</a>
     </div>
     <div id="messages">
         <?php include 'getMessages.php'; ?>
     </div>
 
-    <?php if(isset($_GET['id']) && isset($_GET['token'])) { ?> <!-- Verificar si se proporcionaron los parámetros de ID y token en la URL -->
+    <?php if(isset($_GET['id']) && isset($_GET['token'])) { ?>
     <div id="messageForm">
         <form>
 
@@ -76,8 +76,8 @@ if (isset($_GET['id']) && isset($_GET['token'])) {
             <button type="button" onclick="postMessage()">Send</button>
         </form>
     </div>
-    <?php } else { ?> <!-- Si no se proporcionan los parámetros de ID y token, mostrar un mensaje para iniciar sesión -->
-        <p style="text-align: center; color: red; font-style: italic;">You must login in the platform to be able to write in the forum.</p>
+    <?php } else { ?>
+        <p style="text-align: center; color: red; font-style: italic;">You must login in the platform to be able to write in the forum</p>
     <?php } ?>
 
     <div class="back">
@@ -85,7 +85,7 @@ if (isset($_GET['id']) && isset($_GET['token'])) {
     </div>
 
     <script>
-        // Function to display messages
+        
         function displayMessages() {
             var xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function () {
@@ -98,14 +98,14 @@ if (isset($_GET['id']) && isset($_GET['token'])) {
             xhr.send();
         }
 
-        // Function to post a new message
+        
         function postMessage() {
             var name = document.getElementById('name') ? document.getElementById('name').value : '<?php echo isset($_SESSION['username']) ? htmlspecialchars($_SESSION['username']) : ''; ?>'; // Obtener el nombre de usuario
             var message = document.getElementById('message').value;
             var errorMessagesDiv = document.getElementById('errorMessages');
-            errorMessagesDiv.innerHTML = ''; // Limpiar mensajes de error anteriores
+            errorMessagesDiv.innerHTML = ''; 
 
-            // Verificar si el mensaje está vacío
+            
             if (message) {
                 var xhr = new XMLHttpRequest();
                 xhr.onreadystatechange = function () {
@@ -125,7 +125,7 @@ if (isset($_GET['id']) && isset($_GET['token'])) {
             }
         }
 
-        // Display messages on page load
+     
         displayMessages();
     </script>
 </body>
