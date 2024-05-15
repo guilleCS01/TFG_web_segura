@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit_data'])) {
                 $insertStmt->bind_param("sssss", $image_file, $nombre, $apellidos, $direccion, $correo);
 
                 if ($insertStmt->execute()) {
-                    $message = "Proceso de afiliación aceptado";
+                    $message = "Affiliation process accepted";
                 } else {
                     $message = '<i><p style="color:red;">'. "There has been a mistake in the entered data"  . $conexion->error . '</p></i>';
                 }
