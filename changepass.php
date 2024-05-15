@@ -12,7 +12,7 @@ if ($mysqli->connect_error) {
     die("There has been an error in the connection to the database try again later");
 }
 
-// Leer el ID de usuario y el token de la url
+
 if (isset($_GET['id']) && isset($_GET['token'])) {
     $userId = $_GET['id'];
     $token = $_GET['token'];
@@ -26,7 +26,7 @@ if (isset($_GET['id']) && isset($_GET['token'])) {
         $stmt->bind_result($dbToken);
         $stmt->fetch();
 
-        // Verificar que los tokens son los mismos
+
         if ($token != $dbToken) {
             header("Location: login.php");
             exit();
@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt->execute();
             $stmt->close();
             $_SESSION['success'] = "Password changed successfully";
-            // Volvemos al dashboard
+
             header("Location: changepass.php?id=$userId&token=$token&success=1");
             exit();
         }
