@@ -2,21 +2,21 @@
 
 session_start();
 
-// Definir el número máximo de intentos fallidos y el tiempo de bloqueo (en segundos)
+
 $max_attempts = 4;
-$block_duration = 5; // 2 minutos
+$block_duration = 120; 
 
 if (isset($_POST['login'])) {
-    // Verificar si el usuario ha excedido el número máximo de intentos
+
     if (isset($_SESSION['login_attempts']) && $_SESSION['login_attempts'] >= $max_attempts) {
-        // Verificar si ha pasado el tiempo de bloqueo
+
         if (isset($_SESSION['last_attempt_time']) && (time() - $_SESSION['last_attempt_time']) < $block_duration) {
             $remaining_time = $block_duration - (time() - $_SESSION['last_attempt_time']);
             $_SESSION['error'] = "The maximum number of login attempts has been exceeded. Please wait $remaining_time seconds before trying again.";
             header("Location: login.php");
             exit;
         } else {
-            // Reiniciar el contador de intentos fallidos y actualizar el tiempo del último intento
+
             $_SESSION['login_attempts'] = 0;
             unset($_SESSION['last_attempt_time']);
         }
@@ -39,25 +39,24 @@ if (isset($_POST['login'])) {
     $stmt->execute();
     $stmt->store_result();
 
-    // Verificar si existe el usuario
+
     if ($stmt->num_rows > 0) {
         $stmt->bind_result($id, $hashedPassword);
         $stmt->fetch();
 
-        // Comparar la contraseña
         if (password_verify($password, $hashedPassword)) {
             $_SESSION['loggedin'] = true;
             $_SESSION['id'] = $id;
             $_SESSION['username'] = $username;
 
-            // Reiniciar el contador de intentos fallidos y actualizar el tiempo del último intento después de un inicio de sesión exitoso
+
             $_SESSION['login_attempts'] = 0;
             unset($_SESSION['last_attempt_time']);
 
             header("Location: dashboard.php?id=$id");
             exit;
         } else {
-            // Incrementar el contador de intentos fallidos y registrar el tiempo del último intento
+
             $_SESSION['login_attempts'] = isset($_SESSION['login_attempts']) ? $_SESSION['login_attempts'] + 1 : 1;
             $_SESSION['last_attempt_time'] = time();
             $remaining_attempts = $max_attempts - $_SESSION['login_attempts'] + 1;
