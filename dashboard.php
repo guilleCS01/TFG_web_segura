@@ -16,18 +16,18 @@ if ($mysqli->connect_error) {
 
 $loggedInUserId = $_SESSION['id'];
 
-// Obtener el ID de usuario de la URL si está presente
+
 if (isset($_GET['id'])) {
     $urlUserId = $_GET['id'];
 
-    // Verificar que el ID de la URL coincida con el ID del usuario autenticado
+
     if ($urlUserId != $loggedInUserId) {
         
         header("Location: login.php");
         exit();
     }
 
-    // Obtener el token asociado al usuario de la base de datos
+
     $stmt = $mysqli->prepare("SELECT token FROM users WHERE id = ?");
     $stmt->bind_param("i", $urlUserId);
     $stmt->execute();
@@ -35,7 +35,7 @@ if (isset($_GET['id'])) {
     $stmt->bind_result($userToken);
     $stmt->fetch();
 
-    // Verificar si se obtuvo el token correctamente
+
     if ($stmt->num_rows > 0) {
         $_SESSION['token'] = $userToken; 
     } 
@@ -54,12 +54,12 @@ $stmt->store_result();
 $stmt->bind_result($username);
 $stmt->fetch();
 
-// Funcionalidad para cerrar sesion
+
 if (isset($_POST['logout'])) {
    
     $_SESSION = array();
 
-    // Destruir la sesión
+
     session_destroy();
 
 
