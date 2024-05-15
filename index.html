@@ -75,12 +75,12 @@
             const prevButton = document.querySelector('.prev');
             const nextButton = document.querySelector('.next');
 
-            // Mover hacia las nuevas fotos
+
             function scrollGallery(direction) {
                 gallery.scrollLeft += direction * gallery.offsetWidth;
             }
 
-            // Creamos un listener para las flechas
+
             prevButton.addEventListener('click', function () {
                 scrollGallery(-1);
             });
