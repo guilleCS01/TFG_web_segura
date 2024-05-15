@@ -19,29 +19,37 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit_data'])) {
     $correo = $_POST['correo'];
 
     if (isset($_FILES["file"])) {
-        $allowedExtensions = array("jpg", "jpeg", "png");
+        $allowedExtensions = array("jpeg", "png");
         $image_file = $apellidos . $_FILES["file"]["name"];
         $locate = "Xy7pRzQ2LbEaF9sG/" . $image_file;
         $fileExtension = strtolower(pathinfo($_FILES["file"]["name"], PATHINFO_EXTENSION));
 
-        if (in_array($fileExtension, $allowedExtensions) &&
-            $nombre != "" && $apellidos != "" && $direccion != "" && $correo != "") {
-            if (move_uploaded_file($_FILES["file"]["tmp_name"], $locate)) {
-
-                $insertStmt = $conexion->prepare("INSERT INTO afiliados (dni, nombre, apellidos, direccion, correo) VALUES (?, ?, ?, ?, ?)");
-                $insertStmt->bind_param("sssss", $image_file, $nombre, $apellidos, $direccion, $correo);
-
-                if ($insertStmt->execute()) {
-                    $message = "Affiliation process accepted";
-                } else {
-                    $message = '<i><p style="color:red;">'. "There has been a mistake in the entered data"  . $conexion->error . '</p></i>';
-                }
-                $insertStmt->close();
-            } else {
-                $message = '<i><p style="color:red;">'. "The picture has not been correctrly processed" . '</p></i>';
-            }
+        $image_info = getimagesize($_FILES["file"]["tmp_name"]);
+        if ($image_info === false) {
+            $message = '<i><p style="color:red;">'. "The uploaded file is not a valid image" . '</p></i>';
         } else {
-            $message = '<i><p style="color:red;">'. "Some fields are missing" . '</p></i>';
+            $fileMimeType = $image_info['mime'];
+            if (!in_array($fileMimeType, array('image/jpeg', 'image/png'))) {
+                $message = '<i><p style="color:red;">'. "Only JPEG and PNG images are allowed" . '</p></i>';
+            } elseif (in_array($fileExtension, $allowedExtensions) &&
+                      $nombre != "" && $apellidos != "" && $direccion != "" && $correo != "") {
+                if (move_uploaded_file($_FILES["file"]["tmp_name"], $locate)) {
+
+                    $insertStmt = $conexion->prepare("INSERT INTO afiliados (dni, nombre, apellidos, direccion, correo) VALUES (?, ?, ?, ?, ?)");
+                    $insertStmt->bind_param("sssss", $image_file, $nombre, $apellidos, $direccion, $correo);
+
+                    if ($insertStmt->execute()) {
+                        $message = "Affiliation process accepted";
+                    } else {
+                        $message = '<i><p style="color:red;">'. "There has been a mistake in the entered data"  . $conexion->error . '</p></i>';
+                    }
+                    $insertStmt->close();
+                } else {
+                    $message = '<i><p style="color:red;">'. "The picture has not been correctly processed" . '</p></i>';
+                }
+            } else {
+                $message = '<i><p style="color:red;">'. "Some fields are missing" . '</p></i>';
+            }
         }
     }
 
