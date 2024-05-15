@@ -24,13 +24,12 @@ if (isset($_POST['register'])) {
 
 
     if ($check->num_rows > 0) {
-        $_SESSION['error'] = "El nombre de usuario ya existe";
+        $_SESSION['error'] = "The username already exists";
     } else {
 
         $password = $_POST['password'];
         if (!preg_match('/^(?=.*[0-9])(?=.*[A-Z])(?=.*[!@#$%^&*.,]).{8,}$/', $password)) {
-            $_SESSION['error'] = "La contraseña debe tener al menos 8 caracteres,
-             incluir un número, una letra mayúscula y un símbolo.";
+            $_SESSION['error'] = "The password must be at least 8 characters long, include a number, an uppercase letter, and a symbol.";
         } else {
 
             $token = uniqid();
@@ -43,7 +42,7 @@ if (isset($_POST['register'])) {
 
 
             if ($insertStmt->execute()) {
-                $_SESSION['success'] = "Cuenta creada!";
+                $_SESSION['success'] = "Account created!";
             } else {
                 echo "Error: " . $insertStmt->error;
             }
@@ -84,8 +83,8 @@ if (isset($_POST['register'])) {
         }
         ?>
         <form action="register.php" method="post" id="register-form">
-            <p><input id="username" name="username" type="text" placeholder="Usuario" /></p>
-            <p><input id="password" name="password" type="password" placeholder="Contraseña" /></p>
+            <p><input id="username" name="username" type="text" placeholder="Username" /></p>
+            <p><input id="password" name="password" type="password" placeholder="Password" /></p>
             <p><input name="register" type="submit" value="Register" /></p><br><br>
         </form>
     </div>
