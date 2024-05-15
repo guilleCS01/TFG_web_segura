@@ -10,7 +10,7 @@ if (!isset($_SESSION['loggedin'])) {
 $mysqli = new mysqli("localhost", "root", "password", "web_users");
 
 if ($mysqli->connect_error) {
-    die("Se ha producido un error, intentalo de nuevo más tarde");
+    die("There has been an error in the connection to the database try again later" . $conexion->connect_error);
 }
 
 
@@ -42,7 +42,7 @@ if (isset($_GET['id'])) {
 
     $stmt->close(); 
 } else {
-    echo "ID de usuario no proporcionado.";
+    echo "User's ID was not provided";
     exit();
 }
 
