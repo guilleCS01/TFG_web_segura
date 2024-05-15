@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oceanic</title>
+    <link rel="stylesheet" type="text/css" href="index_page.css">
+</head>
+<body>
+    <div class="header">
+        <h1 class="title1">Oceanic</h1>
+        <div class="Opciones">
+            <ul>
+                <li><a href="news.html">Recent News</a></li> 
+                <li><a href="forum.php">Forum</a></li>
+                <li><a href="affiliate.php">Affiliate</a></li>
+                <li><a href="login.php">Login</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="container">
+        <img class="whale" src="media/whale-tail.jpg" alt="whale tail">
+        <div class="intro" >
+            <p>Oceanic is a non-profit organization born out of a necessity. The necessity to create an entity to protect the biodiversity and the marine environment of our planet. 
+                Ocenaic arises as a need to put an end to the unscrupulous exploitation of the ocean's enviroment. The ocean is the main reason 
+                why there is life in our planet, we all come from the ocean and it gives us most of the oxigen we breath and the resources we need, and we are destroying it without any kind of regard. That is why we at Oceanic are committed to an ecological and environmentally conscious future,
+                that allows us to respect the ocean and its inhabitants. Currently it is estimated that every year over 6.4 million tons of waste end up in the ocean, this means the death and extinction of many marine species.
+                That is why at Oceanic we organize monthly boat clean-ups and campaigns with the objective of cleaning and healing the ocean. 
+                We also collect, heal and return to the ocean all the damaged animals we find on our expeditions.</p>
+                <p>From our website you will be able to find out about the latest actions carried out by the organization, affiliate and become part of the organization or simply find out about news and events related to the marine environment. 
+                </p>
+                <p>Below are some photos that were taken during the last ocean cleanup campaign.
+                </p>
+
+            </div>
+    </div>
+    <br><br>
+    <div class="gallery-container">
+        <button class="prev">❮</button>
+        <div class="gallery">
+            <div class="column">
+                <img src="media/barco basura.jpeg" alt="barco" width="15%" height="80%">
+            </div>
+            <div class="column">
+                <img src="media/dolp.jpg" alt="Dolphin" width="15%" height="80%">
+            </div>
+            <div class="column">
+                <img src="media/mola.jpg" alt="Mola" width="15%" height="80%">
+            </div>
+            <div class="column">
+                <img src="media/plastic.jpeg" alt="Plastic" width="15%" height="80%">
+            </div>
+            <div class="column">
+                <img src="media/turtle.jpg" alt="Turtle" width="15%" height="80%">
+            </div>
+            <div class="column">
+                <img src="media/bigboat.webp" alt="Mola" width="15%" height="80%">
+            </div>
+            <div class="column">
+                <img src="media/catamaran.jpeg" alt="Plastic" width="15%" height="80%">
+            </div>
+            <div class="column">
+                <img src="media/crab.jpg" alt="Turtle" width="15%" height="80%">
+            </div>
+            <div class="column">
+                <img src="media/seal.jpg" alt="Plastic" width="15%" height="80%">
+            </div>
+            
+        </div>
+        <button class="next">❯</button>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const gallery = document.querySelector('.gallery');
+            const prevButton = document.querySelector('.prev');
+            const nextButton = document.querySelector('.next');
+
+            // Mover hacia las nuevas fotos
+            function scrollGallery(direction) {
+                gallery.scrollLeft += direction * gallery.offsetWidth;
+            }
+
+            // Creamos un listener para las flechas
+            prevButton.addEventListener('click', function () {
+                scrollGallery(-1);
+            });
+
+            nextButton.addEventListener('click', function () {
+                scrollGallery(1);
+            });
+        });
+    </script>
+    
+</body>
+</html>

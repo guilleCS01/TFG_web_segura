@@ -1,0 +1,97 @@
+body {
+    background-color: rgb(255, 255, 255); 
+    margin: 0 auto;
+    padding: 0 auto;
+}
+.header{
+    padding: 3%;
+    background: #2d9edf;
+    margin-top: 0;
+}
+.title1 {
+    text-align: center;  
+    color: white;
+    font-size: 5em;
+}
+.Opciones ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.Opciones li {
+    display: inline-block;
+    margin: 0;
+    padding: 15px;
+    color: white;
+}
+
+.Opciones li:not(:last-child)::after {
+    content: "|";
+    margin-left: 15px;
+    color: #ffffff; 
+}
+.Opciones a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.Opciones a:hover {
+    text-decoration: underline;
+}
+
+.container {
+    display: flex;
+    align-items: flex-start;
+    margin-left: 15px;
+}
+  
+.whale{
+    max-width: 50%;
+    margin-right: 10px;
+}
+  
+.intro{
+    font-size: 15px;
+    padding-left: 20px;
+    max-width: 60%;
+}
+.gallery-container {
+    position: relative;
+}
+
+.gallery {
+    display: flex;
+    overflow-x: hidden;
+}
+
+.column {
+    flex: 0 0 33.33%;
+    padding: 0px;
+}
+
+.column img {
+    width: 100%;
+    cursor: pointer;
+}
+
+.prev,
+.next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: white;
+}
+
+.prev {
+    left: 10px;
+}
+
+.next {
+    right: 10px;
+}
