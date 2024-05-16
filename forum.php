@@ -81,8 +81,9 @@ if (isset($_GET['id']) && isset($_GET['token'])) {
     <?php } ?>
 
     <div class="back">
-        <h3><b><a href="index.html">Go Back</a></b></h3>
+        <h3><b><a href="<?php echo isset($_SESSION['loggedin']) ? 'dashboard.php?id='.$_SESSION['id'].'&token='.$_SESSION['token'] : 'index.html'; ?>">Go Back</a></b></h3>
     </div>
+
 
     <script>
         

@@ -88,7 +88,7 @@ $mysqli->close();
         <input type="submit" name="changePassword" value="Change Password">
     </form>
     <div class="back">
-        <h3><b><a href="dashboard.php?id=<?php echo $userId; ?>">Go Back</a></b></h3>
+        <h3><b><a href="dashboard.php?id=<?php echo $userId; ?>&token=<?php echo $token; ?>">Go Back</a></b></h3>
     </div>
 </body>
 </html>

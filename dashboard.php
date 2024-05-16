@@ -92,8 +92,5 @@ $mysqli->close();
         <input type="submit" name="logout" value="Logout">
     </form>
 
-    <div class="back">
-        <h3><b><a href="login.php">Go Back</a></b></h3>
-    </div>
 </body>
 </html>
