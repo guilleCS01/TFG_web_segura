@@ -24,7 +24,7 @@ if (isset($_POST['register'])) {
 
 
     if ($check->num_rows > 0) {
-        $_SESSION['error'] = "The username already exists";
+        $_SESSION['error'] = "The username already existsss";
     } else {
 
         $password = $_POST['password'];
