@@ -33,13 +33,14 @@ if (isset($_POST['register'])) {
         } else {
 
             $token = uniqid();
-
+		
+            $result = $conexion->query("SELECT MAX(id) as max_id FROM users");
+            $row = $result->fetch_assoc();
+            $newId = $row['max_id'] ? $row['max_id'] + 1 : 1;
 
             $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-            $insertStmt = $conexion->prepare("INSERT INTO users (username, password, token) VALUES (?, ?, ?)");
-            $insertStmt->bind_param("sss", $username, $hashedPassword, $token);
-            $info = password_get_info($hashedPassword);
-
+            $insertStmt = $conexion->prepare("INSERT INTO users (id, username, password, token) VALUES (?, ?, ?, ?)");
+            $insertStmt->bind_param("isss",$newId, $username, $hashedPassword, $token);
 
             if ($insertStmt->execute()) {
                 $_SESSION['success'] = "Account created!";
