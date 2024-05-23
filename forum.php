@@ -101,7 +101,7 @@ if (isset($_GET['id']) && isset($_GET['token'])) {
 
         
         function postMessage() {
-            var name = document.getElementById('name') ? document.getElementById('name').value : '<?php echo isset($_SESSION['username']) ? htmlspecialchars($_SESSION['username']) : ''; ?>'; // Obtener el nombre de usuario
+            var name = document.getElementById('name') ? document.getElementById('name').value : '<?php echo isset($_SESSION['username']) ? htmlspecialchars($_SESSION['username']) : ''; ?>';
             var message = document.getElementById('message').value;
             var errorMessagesDiv = document.getElementById('errorMessages');
             errorMessagesDiv.innerHTML = ''; 
