@@ -49,7 +49,7 @@ if (isset($_GET['id']) && isset($_GET['token'])) {
         <h1>Debate Forum</h1>
     </header>
     <div class="pregunta">
-        <h2><b>Let us know you opinion about the 2024 climate summit</b></h2>
+        <h2><b>Let us know your opinion about the 2024 climate summit</b></h2>
         <a href="https://www.theclimategroup.org/us-climate-action-summit-2024">Reference</a>
     </div>
     <div id="messages">
