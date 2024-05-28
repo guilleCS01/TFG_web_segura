@@ -68,7 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit_data'])) {
 <body>
     <div class="affiliate">
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
-        Enter your personal infromation and apply to become a member of the organitation. With this you will receibe all the infromation regarding activities inside the organization and together we can change the world.<br><br>
+        Enter your personal information and apply to become a member of the organization. With this you will receive all the information regarding activities in the organization and together we can change the world.<br><br>
             <label for="fname">Name:</label>
             <input type="text" id="fname" name="fname"><br><br>
             <label for="lname">Surname:</label>
